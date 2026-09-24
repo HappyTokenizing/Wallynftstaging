@@ -4,7 +4,7 @@ import './globals.css';
 export const metadata: Metadata = {
   title: 'Wally Club — RWA Foundation',
   description:
-    'A mission-driven 1,000-piece NFT collection supporting the RWA Foundation and fair onchain markets for everyone.',
+    'A mission-driven 2,000-piece NFT collection supporting the RWA Foundation and fair onchain markets for everyone.',
   icons: {
     icon: '/wally-logo-mark.png',
     apple: '/wally-logo-mark.png',

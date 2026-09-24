@@ -26,8 +26,6 @@ type Wally = {
   name: string;
   image: string;
   tier: string;
-  rank: number;
-  score: number;
   color: string | null;
   hat: string | null;
   tusk: string | null;
@@ -49,12 +47,12 @@ type CollectionData = {
 };
 
 const heroWallys = [
-  { src: '/collection/0001.webp', label: '#0001' },
-  { src: '/collection/0271.webp', label: 'RAINBOW 1/1' },
-  { src: '/collection/0510.webp', label: 'WALL STREET 1/1' },
+  { src: '/collection/final6-20260922/0001.webp', label: '#0001' },
+  { src: '/collection/final6-20260922/1400.webp', label: 'RAINBOW 1/1' },
+  { src: '/collection/final6-20260922/2000.webp', label: 'WALL STREET 1/1' },
 ];
 
-const tierOrder = ['All', 'Common', 'Uncommon', 'Rare', 'Epic', '1 of 1'];
+const tierOrder = ['All', 'Standard', '1 of 1'];
 
 const activationCards = [
   {
@@ -90,7 +88,7 @@ export default function Home() {
   const [signalSent, setSignalSent] = useState(false);
 
   useEffect(() => {
-    fetch('/collection.json')
+    fetch('/collection.json?v=final6-20260922')
       .then((response) => response.json())
       .then((payload: CollectionData) => setData(payload));
   }, []);
@@ -152,7 +150,7 @@ export default function Home() {
       </header>
 
       <div className="signal-strip" aria-label="Launch message">
-        <span>1,000 WALLYS</span>
+        <span>2,000 WALLYS</span>
         <b>◆</b>
         <span>REAL ASSETS</span>
         <b>◆</b>
@@ -174,7 +172,7 @@ export default function Home() {
             <em>REAL WORLD.</em>
           </h1>
           <p>
-            A 1,000-piece character collection building a clearer, fairer path
+            A 2,000-piece character collection building a clearer, fairer path
             for real-world assets to move onchain.
           </p>
           <div className="hero-actions">
@@ -206,7 +204,7 @@ export default function Home() {
             </figure>
           ))}
           <div className="edition-stamp">
-            <strong>1K</strong>
+            <strong>2K</strong>
             <span>
               GENESIS
               <br />
@@ -218,15 +216,15 @@ export default function Home() {
 
       <section className="numbers-band" aria-label="Collection facts">
         <div>
-          <strong>1,000</strong>
+          <strong>2,000</strong>
           <span>Genesis Wallys</span>
         </div>
         <div>
-          <strong>29</strong>
+          <strong>{new Set(data?.items.filter((item) => !item.oneOfOne).map((item) => item.color)).size || '30'}</strong>
           <span>Color traits</span>
         </div>
         <div>
-          <strong>32</strong>
+          <strong>{new Set(data?.items.filter((item) => !item.oneOfOne).map((item) => item.hat)).size || '—'}</strong>
           <span>Hat traits</span>
         </div>
         <div>
@@ -234,7 +232,7 @@ export default function Home() {
           <span>Tusk finishes</span>
         </div>
         <div>
-          <strong>04</strong>
+          <strong>10</strong>
           <span>True one-of-ones</span>
         </div>
       </section>
@@ -251,15 +249,15 @@ export default function Home() {
               <em>collected.</em>
             </h2>
             <p>
-              A fixed set of 1,000 Wallys, assembled from a deliberate trait
-              system. Search the preview archive, compare rarity, and find your
+              A fixed set of 2,000 Wallys, assembled from a deliberate trait
+              system. Search the full archive, compare traits, and find your
               signal.
             </p>
           </div>
           <aside className="rarity-panel" aria-labelledby="rarity-title">
             <div className="panel-title">
               <span id="rarity-title">RARITY SIGNAL</span>
-              <small>SUPPLY / 1,000</small>
+              <small>SUPPLY / 2,000</small>
             </div>
             <div className="distribution-bar" aria-label="Rarity distribution">
               {data?.distribution.map((entry) => (
@@ -326,7 +324,7 @@ export default function Home() {
                 <Badge className={`rarity-badge ${tierClass(item.tier)}`}>
                   {item.tier}
                 </Badge>
-                <span className="rank-chip">RANK {item.rank}</span>
+                <span className="rank-chip">#{item.number}</span>
               </div>
               <div className="nft-info">
                 <div>
@@ -372,8 +370,8 @@ export default function Home() {
           </Button>
         )}
         <p className="archive-note">
-          Showing a curated 40-piece preview from the completed 1,000-piece
-          collection. Full collection access launches with the club.
+          Explore all 2,000 Wallys from Final Collection 6, including ten
+          one-of-one editions. Artwork updated September 22, 2026.
         </p>
       </section>
 
